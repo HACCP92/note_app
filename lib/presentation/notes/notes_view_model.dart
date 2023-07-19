@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:note_app/domain/model/note.dart';
-import 'package:note_app/domain/use_case/add_note_use_case.dart';
-import 'package:note_app/domain/use_case/delete_note_use_case.dart';
-import 'package:note_app/domain/use_case/get_notes_use_case.dart';
 import 'package:note_app/domain/use_case/use_cases.dart';
 import 'package:note_app/domain/util/note_order.dart';
 import 'package:note_app/domain/util/order_type.dart';
@@ -15,6 +12,7 @@ class NotesViewModel with ChangeNotifier {
   NotesState _state = NotesState(
     notes: [],
     noteOrder: const NoteOrder.date(OrderType.descending()),
+    isOrderSectionVisible: false,
   );
   NotesState get state => _state;
 
@@ -29,6 +27,18 @@ class NotesViewModel with ChangeNotifier {
       loadNotes: _loadNotes,
       deleteNote: _deleteNotes,
       restoreNote: _restoreNote,
+      changeOrder: (NoteOrder noteOrder) {
+        _state = state.copyWith(
+          noteOrder: noteOrder,
+        );
+        _loadNotes();
+      },
+      toggleOrderSection: () {
+        _state = state.copyWith(
+          isOrderSectionVisible: !state.isOrderSectionVisible,
+        );
+        notifyListeners();
+      },
     );
   }
 
