@@ -43,7 +43,7 @@ class NotesScreen extends StatelessWidget {
         child: ListView(
           children: [
             AnimatedContainer(
-              duration: const Duration(milliseconds: 300),
+              duration: const Duration(milliseconds: 100),
               child: state.isOrderSectionVisible
                   ? OrderSection(
                       noteOrder: state.noteOrder,

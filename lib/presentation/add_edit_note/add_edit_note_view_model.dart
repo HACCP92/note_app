@@ -58,4 +58,10 @@ class AddEditNoteViewModel with ChangeNotifier {
     }
     _eventController.add(const AddEditNoteUiEvent.saveNote());
   }
+
+  bool isDarkColor(int colorValue) {
+    Color color = Color(colorValue);
+    double brightness = color.computeLuminance();
+    return brightness < 0.5;
+  }
 }

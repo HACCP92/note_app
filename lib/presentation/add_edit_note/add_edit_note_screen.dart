@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:note_app/domain/model/note.dart';
 import 'package:note_app/presentation/add_edit_note/add_edit_note_event.dart';
@@ -26,6 +25,11 @@ class _AddEditNoteScreenState extends State<AddEditNoteScreen> {
     wisteria,
     skyBlue,
     illusion,
+    red,
+    brown,
+    pink,
+    purple,
+    pinkbold,
   ];
 
   @override
@@ -64,6 +68,7 @@ class _AddEditNoteScreenState extends State<AddEditNoteScreen> {
   @override
   Widget build(BuildContext context) {
     final viewModel = context.watch<AddEditNoteViewModel>();
+    bool isDarkColor = viewModel.isDarkColor(viewModel.color);
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -107,7 +112,7 @@ class _AddEditNoteScreenState extends State<AddEditNoteScreen> {
               controller: _titleController,
               maxLines: 1,
               style: Theme.of(context).textTheme.headline5!.copyWith(
-                    color: darkGray,
+                    color: isDarkColor ? Colors.black : Colors.white,
                   ),
               decoration: const InputDecoration(
                 hintText: '제목을 입력하세요',
